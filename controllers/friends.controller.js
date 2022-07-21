@@ -1,4 +1,4 @@
-const model = require('../model/friends.model');
+const model = require('../models/friends.model');
 
 function postFriend(req, res) {
  if (!req.body.name) {//validate input data
@@ -10,11 +10,9 @@ function postFriend(req, res) {
   name: req.body.name, //body set to object passed into request, also need to set id
   //req.body won't exist unless we parse json in middleware
   id: model.length//better to process extra data in api automatically
-
  };
  model.push(newFriend);
  res.json(newFriend);//if friend added successfully, return json for new friend
-
 }
 
 function getFriends(req, res) {
@@ -30,7 +28,6 @@ function getFriend(req, res) {
   res.status(404).json({
    error: 'Friend does not exist'
   });
-
  }
 }
 

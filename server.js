@@ -1,8 +1,7 @@
-const { application } = require('express');
 const express = require('express');
 
-const friendsController = require('./controllers/friends.controller');
-const messagesController = require('./controllers/messages.controller');
+const friendsRouter = require('./routes/friends.router');
+const messagesRouter = require('./routes/friends.router');
 
 const app = express();//SERVER returned from express function
 const PORT = 3010;
@@ -23,17 +22,14 @@ app.use((req, res, next) => {//request received
 app.use(express.json());
 //req.body now exists because we parse json here. Sets body to empty object if no data or content type other
 
-
 //==========
 // CONTROLLER = process requests, set response
 //==========
-app.post('/friends', friendsController.postFriend);
-app.get('/friends', friendsController.getFriends);
-// GET /friends/22 undefined but still MATCHES this handler
-app.get('/friends/:friendId', friendsController.getFriend);
 
-app.get('/messages', messagesController.getMessages);
-app.post('/messages', messagesController.getMessages);
+//MOUNTING the __sRouter to root of '/__ and .use(registers as middleware)
+app.use('/friends', friendsRouter);//registered - express knows to match REQUESTS to routes in this router
+app.use('/messages', messagesRouter);
+
 
 app.listen(PORT, () => {
  console.log(`listening on port...: ${PORT}`);
