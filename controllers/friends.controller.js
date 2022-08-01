@@ -2,7 +2,7 @@ const model = require('../models/friends.model');
 
 function postFriend(req, res) {
  if (!req.body.name) {//validate input data
-  return res.status(400).json({ //return from route handler so other res.json() is not sent also! PATTERN
+  return res.status(400).json({ //RETURN from route handler so res.json() LATER is not sent also! PATTERN
    error: 'Missing friend name'
   });//often most appropriate error for validation on request is failing
  }
