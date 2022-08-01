@@ -7,8 +7,8 @@ const messagesRouter = require('./routes/messages.router');
 const app = express();//SERVER returned from express function
 
 //Settings for view engine 'HandleBars' and 'views' inside 'VIEWS FOLDER'
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');//set parameters for view engine we installed = Handlebars
+app.set('views', path.join(__dirname, 'views'));//directory to hold handlebars Template = "Views" folder
 
 const PORT = 3010;
 
